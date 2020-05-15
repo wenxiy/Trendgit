@@ -1,16 +1,22 @@
-package com.example.trend;
+package com.example.trend.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.trend.R;
 import com.example.trend.service.entity.Developers;
 import com.example.trend.service.entity.Languages_Collection;
 import com.example.trend.service.entity.Repositories;
 import com.example.trend.service.entity.Spoken_Languages_Collection;
 import com.example.trend.service.presenter.DevelopersPresenter;
+import com.example.trend.ui.adapter.ListViewAdapter;
+import com.example.trend.ui.adapter.RecyclerViewAdapter;
+import com.example.trend.ui.view.DevelopersView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(this);
         mrecyclerview.setLayoutManager(linearLayoutManager);
         //创建适配器
-        RecyclerViewAdpter adpter=new RecyclerViewAdpter(developerdatas);
+        ListViewAdapter adpter=new ListViewAdapter(developerdatas);
         //设置到Recyclerview
         mrecyclerview.setAdapter(adpter);
     }

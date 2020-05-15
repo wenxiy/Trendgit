@@ -3,11 +3,13 @@ package com.example.trend.service.presenter;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
+import com.example.trend.service.Retrofit.RetrofitHelper;
 import com.example.trend.service.entity.Developers;
 import com.example.trend.service.manager.DataManager;
+import com.example.trend.ui.view.DevelopersView;
+import com.example.trend.ui.view.View;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -15,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class DevelopersPresenter {
+public class DevelopersPresenter implements Presenter {
     private DataManager dataManager;
     private Context mcontext;
     private DevelopersView dataView;
@@ -54,6 +56,7 @@ public class DevelopersPresenter {
     public void attachView(View view) {
 
     }
+
 
     public void attachView(DevelopersView view) {
         //这里写和view的联系
