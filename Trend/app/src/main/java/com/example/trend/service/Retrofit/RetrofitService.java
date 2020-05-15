@@ -1,7 +1,20 @@
 package com.example.trend.service.Retrofit;
 
+import com.example.trend.service.entity.Developers;
+import com.example.trend.service.entity.Languages_Collection;
+import com.example.trend.service.entity.Repositories;
+import com.example.trend.service.entity.Spoken_Languages_Collection;
+
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface RetrofitService {
-    @GET("")
+    @GET("/developers")
+    Observable<Developers> getDevelopers();
+    @GET("/languages")
+    Observable<Languages_Collection>getLanguages();
+    @GET("/spoken_languages")
+    Observable<Spoken_Languages_Collection>getSpoken();
+    @GET("/repositories")
+    Observable<Repositories>getRepositories();
 }

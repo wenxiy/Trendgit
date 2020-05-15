@@ -1,4 +1,105 @@
 package com.example.trend.service.presenter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import com.example.trend.service.entity.Developers;
+import com.example.trend.service.manager.DataManager;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class DevelopersPresenter {
+    private DataManager dataManager;
+    private Context mcontext;
+    private DevelopersView dataView;
+    private Developers mdevelopers;
+    private CompositeDisposable compositeDisposable;
+    public DevelopersPresenter(Context context){
+        this.mcontext=context;
+    }
+
+    @Override
+    public void onCreate() {
+        dataManager=new DataManager(mcontext);//这个有问题，估计是context的问题
+        compositeDisposable=new CompositeDisposable();
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onStop() {
+        if (compositeDisposable!=null&&!compositeDisposable.isDisposed()) {
+            compositeDisposable.dispose();
+        }
+
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void attachView(View view) {
+
+    }
+
+    public void attachView(DevelopersView view) {
+        //这里写和view的联系
+        dataView=view;
+    }
+
+    @Override
+    public void attachIncomingIntent(Intent intent) {
+        //添加网络请求，线程切换
+        getDevelopers();
+    }
+
+    public void getDevelopers() {
+        RetrofitHelper.getInstance(mcontext)
+                .getServer()
+                .getDevelopers()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Developers>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.d("TAG","订阅");
+                    }
+
+
+                    @Override
+                    public void onNext(Developers developers) {
+                        mdevelopers=developers;
+                        Log.d("TAG","请求数据");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        Toast.makeText(mcontext,"拉取请求失败",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (mdevelopers!=null)
+                        {
+                            dataView.success(mdevelopers);
+                            //这里去写和view的联系，把数据传过去
+                        }
+                        Toast.makeText(mcontext,"拉取请求完成",Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 }

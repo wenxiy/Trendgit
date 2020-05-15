@@ -4,10 +4,14 @@ import android.content.Context;
 
 import com.example.trend.service.Retrofit.RetrofitHelper;
 import com.example.trend.service.Retrofit.RetrofitService;
+import com.example.trend.service.entity.Developers;
+import com.example.trend.service.entity.Languages_Collection;
+import com.example.trend.service.entity.Repositories;
+import com.example.trend.service.entity.Spoken_Languages_Collection;
 
 import io.reactivex.Observable;
 
-public class Datamanager {
+public class DataManager {
     private RetrofitService mRetrofitService;
     public DataManager(Context context)
     {
@@ -30,6 +34,6 @@ public class Datamanager {
     }
 
     public Observable<Spoken_Languages_Collection> getSpoken_Languages_collection(){
-        return mRetrofitService.getSpoken_Languages_Collection();
+        return mRetrofitService.getSpoken();
     }
 }
