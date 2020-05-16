@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //请求成功，利用请求过来的数据mdevelopers去设置数据 textview1是作者名字 2是项目名字 sim是头像
-            textView_1.setText(mdevelopers.getUsername());
-            textView_2.setText(mdevelopers.getName());
-            simpleDraweeView.setImageURI(mdevelopers.getAvatar());
+            textView_1.setText("111");
+            textView_2.setText("2222");
+            simpleDraweeView.setImageURI("https://developer.android.com/studio/images/projects/project-java-compatibility_2x.png?hl=zh-cn");
         }
 
 
