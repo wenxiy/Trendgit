@@ -14,7 +14,6 @@ import com.example.trend.service.entity.Repositories;
 import com.example.trend.service.entity.Spoken_Languages_Collection;
 import com.example.trend.service.presenter.DevelopersPresenter;
 import com.example.trend.ui.adapter.ListViewAdapter;
-import com.example.trend.ui.adapter.RecyclerViewAdapter;
 import com.example.trend.ui.view.DevelopersView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -81,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             textView_2.setText(mdevelopers.getName());
             simpleDraweeView.setImageURI(mdevelopers.getUrl());
         }
+
 
 
         @Override

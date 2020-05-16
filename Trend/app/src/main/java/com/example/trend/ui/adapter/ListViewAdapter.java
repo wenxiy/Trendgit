@@ -59,7 +59,8 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.InnerH
         }
         public void setData(Developers data){
                 maver.setImageURI(data.getAvatar());
-                mitem_t1.setText(data.);
+                mitem_t1.setText(data.getUsername());
+                mitem_t2.setText(data.getName());
         }
     }
 }
