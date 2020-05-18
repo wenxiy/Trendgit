@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
@@ -34,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView_1=(TextView)findViewById(R.id.item_t1);
-        textView_2=(TextView)findViewById(R.id.item_t2);
-        simpleDraweeView=findViewById(R.id.aver);
-        mrecyclerview=(RecyclerView) findViewById(R.id.recyclerview_1);
+        textView_1=(TextView)this.findViewById(R.id.item_t1);
+        textView_2=(TextView)this.findViewById(R.id.item_t2);
+        simpleDraweeView=this.findViewById(R.id.aver);
+        mrecyclerview=(RecyclerView)this.findViewById(R.id.recyclerview_1);
         initdeveloperdatas();
     }
     @Override
@@ -58,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mdeveloperspresenter.onCreate();//创建呈现层
         mdeveloperspresenter.attachView(mDevelopersview);
         mdeveloperspresenter.getDevelopers();//调用网络请求方法
-        developerdatas=new ArrayList<>();//创建
+        developerdatas=new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         //设置布局管理器
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(this);
         mrecyclerview.setLayoutManager(linearLayoutManager);
+        //假装传入一些自己的数据，看看是recyclerview的错误还是MVp的问题
         //创建适配器
         ListViewAdapter adpter=new ListViewAdapter(developerdatas);
         //设置到Recyclerview
@@ -70,22 +72,21 @@ public class MainActivity extends AppCompatActivity {
     private DevelopersView mDevelopersview=new DevelopersView() {//新建一个developersview层的数据去完成这些请求
         @Override
         public void success(Developers mdevelopers) {
-            for(int i=0;i<10;i++)
-            {
-                developerdatas.add(mdevelopers);
-            }
-
+                for(int i=0;i<10;i++) {
+                    mdevelopers=new Developers();
+                    mdevelopers.getAvatar();
+                    mdevelopers.getName();
+                    mdevelopers.getUsername();
+                    developerdatas.add(mdevelopers);
+                }
             //请求成功，利用请求过来的数据mdevelopers去设置数据 textview1是作者名字 2是项目名字 sim是头像
-            textView_1.setText("111");
-            textView_2.setText("2222");
-            simpleDraweeView.setImageURI("https://developer.android.com/studio/images/projects/project-java-compatibility_2x.png?hl=zh-cn");
         }
 
 
 
         @Override
         public void error(String result) {
-
+            Log.d("TAG","订阅失败");
         }
     };
 
