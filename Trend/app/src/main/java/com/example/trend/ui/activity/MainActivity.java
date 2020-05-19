@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.trend.R;
 import com.example.trend.service.entity.Developers;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void error(String result) {
             Log.d("TAG","订阅失败");
+            Toast.makeText(getApplicationContext(),"订阅失败",Toast.LENGTH_SHORT).show();
         }
     };
 
