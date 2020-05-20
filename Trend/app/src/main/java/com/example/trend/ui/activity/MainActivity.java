@@ -23,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mrecyclerview;
-    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter(this);
+    private RecyclerView mrecyclerview;//recyclerview的建立
+    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter(this);//呈现层的建立
     private List<Languages_Collection> languages_collectiondatas;
-    private List<Developers> developerdatas;
+    private List<Developers> developerdatas;//存放数据的List
     private List<Repositories> repositorydata;
     private List<Spoken_Languages_Collection> spoken_languages_collectiondatas;
     private TextView textView_1;
@@ -36,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView_1=(TextView)this.findViewById(R.id.item_t1);
-        textView_2=(TextView)this.findViewById(R.id.item_t2);
-        simpleDraweeView=this.findViewById(R.id.aver);
-        mrecyclerview=(RecyclerView)this.findViewById(R.id.recyclerview_1);
-        initdeveloperdatas();
+        textView_1=(TextView)this.findViewById(R.id.item_t1);//绑定视图
+        textView_2=(TextView)this.findViewById(R.id.item_t2);//绑定视图
+        simpleDraweeView=this.findViewById(R.id.aver);//绑定视图
+        mrecyclerview=(RecyclerView)this.findViewById(R.id.recyclerview_1);//绑定视图
+        initdeveloperdatas();//传送数据并呈现
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.menu,menu);//创建数据菜单
+        return super.onCreateOptionsMenu(menu);//呈现菜单
     }
 
 //    private void initView() {//将数据放到ui上

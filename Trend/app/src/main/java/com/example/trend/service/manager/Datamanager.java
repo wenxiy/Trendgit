@@ -19,6 +19,10 @@ public class DataManager {
         下面👇一行报错，我怀疑是context的问题，没有吧context传入我的mainactivity里，单例模式的问题
          */
         this.mRetrofitService= RetrofitHelper.getInstance(context).getServer();
+        /*数据管理器返回的值是
+        * 我们通过单例模式的方法getServer()返回的retrofit反射出的父类
+        *
+        * */
 
     }
     public Observable<Repositories> getRepositories(){

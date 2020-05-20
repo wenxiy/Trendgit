@@ -39,7 +39,7 @@ public class RetrofitHelper {
     }
 
     private void resetAPP() {
-        api=new Retrofit.Builder()
+            api=new Retrofit.Builder()
                 .baseUrl("https://ghapi.huchen.dev")//这里出错报错，仔细查看url
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
