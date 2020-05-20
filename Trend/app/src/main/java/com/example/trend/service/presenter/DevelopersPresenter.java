@@ -70,7 +70,6 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-
         RetrofitHelper.getInstance(mcontext)
                 .getServer()
                 .getDevelopers()

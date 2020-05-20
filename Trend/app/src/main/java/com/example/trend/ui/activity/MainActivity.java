@@ -19,6 +19,7 @@ import com.example.trend.ui.adapter.ListViewAdapter;
 import com.example.trend.ui.view.DevelopersView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         //创建呈现层的对象，调用网络请求方法，与view联系
         mdeveloperspresenter.onCreate();//创建呈现层
         mdeveloperspresenter.attachView(mDevelopersview);
+        /*
+        以下是一个国外的解决办法，类似于提高响应的时间，但HttpUrlConnection报错，没有这个类，怀疑是OKhttp
+        的方法和类
+         */
+      //  HttpUrlConnection conn = (HttpURLConnection) url.openConnection();
+      //  conn.setConnectTimeout(7000);
         mdeveloperspresenter.getDevelopers();//调用网络请求方法
         developerdatas=new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         //设置布局管理器
