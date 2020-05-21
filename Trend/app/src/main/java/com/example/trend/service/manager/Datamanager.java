@@ -29,9 +29,11 @@ public class DataManager {
         return mRetrofitService.getRepositories();
     }
 
-    public Observable<Developers>getDevelopers(){
+ public Observable<Developers>getDevelopers(){
         return mRetrofitService.getDevelopers();
     }
+
+
 
     public Observable<Languages_Collection> getLanguages_Collection(){
         return mRetrofitService.getLanguages();

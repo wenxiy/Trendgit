@@ -42,8 +42,11 @@ public class RetrofitHelper {
             api=new Retrofit.Builder()
                 .baseUrl("https://ghapi.huchen.dev")//这里出错报错，仔细查看url
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    /*
+                    尝试去注释这个方法，不采用解析数据试试
+                     */
+                    .addConverterFactory(GsonConverterFactory.create())
+                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
     //

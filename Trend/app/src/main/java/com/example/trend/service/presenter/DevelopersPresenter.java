@@ -10,7 +10,9 @@ import com.example.trend.service.entity.Developers;
 import com.example.trend.service.manager.DataManager;
 import com.example.trend.ui.view.DevelopersView;
 import com.example.trend.ui.view.View;
+import com.google.gson.JsonObject;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -23,14 +25,15 @@ public class DevelopersPresenter implements Presenter {
     private DevelopersView dataView;
     private Developers mdevelopers;
     private CompositeDisposable compositeDisposable;
-    public DevelopersPresenter(Context context){
-        this.mcontext=context;
+
+    public DevelopersPresenter(Context context) {
+        this.mcontext = context;
     }
 
     @Override
     public void onCreate() {
-        dataManager=new DataManager(mcontext);//这个有问题，估计是context的问题
-        compositeDisposable=new CompositeDisposable();
+        dataManager = new DataManager(mcontext);//这个有问题，估计是context的问题
+        compositeDisposable = new CompositeDisposable();
     }
 
     @Override
@@ -40,7 +43,7 @@ public class DevelopersPresenter implements Presenter {
 
     @Override
     public void onStop() {
-        if (compositeDisposable!=null&&!compositeDisposable.isDisposed()) {
+        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
         }
 
@@ -60,7 +63,7 @@ public class DevelopersPresenter implements Presenter {
 
     public void attachView(DevelopersView view) {
         //这里写和view的联系
-        dataView=view;
+        dataView = view;
     }
 
     @Override
@@ -78,30 +81,30 @@ public class DevelopersPresenter implements Presenter {
                 .subscribe(new Observer<Developers>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        Log.d("TAG","订阅");
+                        Log.d("TAG", "订阅");
                     }
 
 
                     @Override
                     public void onNext(Developers developers) {
-                        mdevelopers=developers;
-                        Log.d("TAG","请求数据");
+                        mdevelopers = developers;
+                        Log.d("TAG", "请求数据");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        Toast.makeText(mcontext,"拉取请求失败",Toast.LENGTH_SHORT).show();
+                        Log.d("TAG", "拉去请求失败");
+                        //   Toast.makeText(mcontext,"拉取请求失败",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onComplete() {
-                        if (mdevelopers!=null)
-                        {
+                        if (mdevelopers != null) {
                             dataView.success(mdevelopers);
                             //这里去写和view的联系，把数据传过去
                         }
-                        Toast.makeText(mcontext,"拉取请求完成",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mcontext, "拉取请求完成", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
