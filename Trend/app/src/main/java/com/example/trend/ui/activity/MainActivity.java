@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Spoken_Languages_Collection> spoken_languages_collectiondatas;
     private TextView textView_1;
     private TextView textView_2;
+    private Button button_2;
     private SimpleDraweeView simpleDraweeView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textView_1=(TextView)this.findViewById(R.id.item_t1);//绑定视图
         textView_2=(TextView)this.findViewById(R.id.item_t2);//绑定视图
+        button_2=this.findViewById(R.id.button2);
         simpleDraweeView=this.findViewById(R.id.aver);//绑定视图
         mrecyclerview=(RecyclerView)this.findViewById(R.id.recyclerview_1);//绑定视图
-        initdeveloperdatas();//传送数据并呈现
+        button_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mdeveloperspresenter.getDevelopers();//调用网络请求方法
+            }
+        });
+            initdeveloperdatas();//传送数据并呈现
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -66,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
          */
       //  HttpUrlConnection conn = (HttpURLConnection) url.openConnection();
       //  conn.setConnectTimeout(7000);
-        mdeveloperspresenter.getDevelopers();//调用网络请求方法
         developerdatas=new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         //设置布局管理器
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(this);
