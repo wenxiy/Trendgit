@@ -73,8 +73,7 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-
-                .getServer()
+        RetrofitService retrofitService=RetrofitService
                 .getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
