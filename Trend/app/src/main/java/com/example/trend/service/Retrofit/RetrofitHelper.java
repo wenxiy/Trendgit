@@ -8,50 +8,25 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 //单例模式，提高内存利用和效率
+//取消单例模式
 public class RetrofitHelper {
-    private Context mCntext;//我怀疑是这个context的问题，
-    OkHttpClient client=new OkHttpClient();//这里报错
-    private Retrofit api=null;
-    public Retrofit getApi()
+    private static Retrofit retrofit = null;
+    private final static  String baseurl="https://ghapi.huchen.dev";
+    public Retrofit getRetrofit() {
+        return retrofit;
+    }
+    public RetrofitHelper()
     {
-        return api;
+        getClient();
     }
-    private static RetrofitHelper instance=null;
-    public static RetrofitHelper getInstance(Context context) {
-        if (instance == null) {
-            synchronized (RetrofitHelper.class){
-                if (instance==null) {
-                    instance=new RetrofitHelper(context);
-
-                }
-            }
-        }//线程不安全,后续加死锁
-        //目前已加
-        return instance;
-    }
-    public RetrofitHelper(Context context) {
-        mCntext=context;
-        init();
-    }
-    private void init()
-    {
-        resetAPP();
-    }
-
-    private void resetAPP() {
-            api=new Retrofit.Builder()
-                .baseUrl("https://ghapi.huchen.dev")//这里出错报错，仔细查看url
-                .client(client)
-                    /*
-                    尝试去注释这个方法，不采用解析数据试试
-                     */
+    private static Retrofit getClient() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .baseUrl(baseurl)//这里出错报错，仔细查看url
+                    .build();
+        }
+        return retrofit;
     }
-    //
-    public RetrofitService getServer(){
-        return api.create(RetrofitService.class);
-    }
-
 }

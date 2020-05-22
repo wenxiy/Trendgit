@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.trend.service.Retrofit.RetrofitHelper;
+import com.example.trend.service.Retrofit.RetrofitService;
 import com.example.trend.service.entity.Developers;
 import com.example.trend.ui.view.DevelopersView;
 import com.example.trend.ui.view.View;
@@ -17,12 +18,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Retrofit;
 
 public class DevelopersPresenter implements Presenter {
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
     private CompositeDisposable compositeDisposable;
+    private RetrofitHelper retrofitHelper=new RetrofitHelper();
 
     public DevelopersPresenter(Context context) {
         this.mcontext = context;
@@ -70,7 +73,7 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-        RetrofitHelper.getInstance(mcontext)
+
                 .getServer()
                 .getDevelopers()
                 .subscribeOn(Schedulers.io())
