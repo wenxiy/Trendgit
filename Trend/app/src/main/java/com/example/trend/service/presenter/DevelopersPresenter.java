@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.example.trend.service.Retrofit.RetrofitHelper;
 import com.example.trend.service.entity.Developers;
-import com.example.trend.service.manager.DataManager;
 import com.example.trend.ui.view.DevelopersView;
 import com.example.trend.ui.view.View;
 import com.google.gson.JsonObject;
@@ -20,7 +19,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class DevelopersPresenter implements Presenter {
-    private DataManager dataManager;
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
@@ -32,7 +30,6 @@ public class DevelopersPresenter implements Presenter {
 
     @Override
     public void onCreate() {
-        dataManager = new DataManager(mcontext);//这个有问题，估计是context的问题
         compositeDisposable = new CompositeDisposable();
     }
 
