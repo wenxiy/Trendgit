@@ -19,11 +19,14 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DevelopersPresenter implements Presenter {
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
+    private final static  String baseurl="https://ghapi.huchen.dev";
     private CompositeDisposable compositeDisposable;
     private RetrofitHelper retrofitHelper=new RetrofitHelper();
 
@@ -73,8 +76,13 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-        RetrofitService retrofitService=RetrofitService
-                .getDevelopers()
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl(baseurl)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+        retrofitService.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Developers>() {
