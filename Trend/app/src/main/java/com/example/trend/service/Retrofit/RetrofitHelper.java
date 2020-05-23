@@ -1,7 +1,10 @@
 package com.example.trend.service.Retrofit;
 import android.content.Context;
 
+import com.example.trend.BuildConfig;
 import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

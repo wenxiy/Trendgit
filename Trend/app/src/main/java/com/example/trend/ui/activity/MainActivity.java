@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 import com.example.trend.R;
 import com.example.trend.service.entity.Developers;
 import com.example.trend.service.entity.Languages_Collection;
@@ -85,15 +87,26 @@ public class MainActivity extends AppCompatActivity {
         ListViewAdapter adpter=new ListViewAdapter(developerdatas);
         //设置到Recyclerview
         mrecyclerview.setAdapter(adpter);
+        //创建骨架屏
+        final SkeletonScreen skeletonScreen=Skeleton.bind(mrecyclerview)
+                .adapter(adpter)
+                .shimmer(true)
+                .angle(30)
+                .frozen(false)
+                .duration(1200)
+                .count(10)
+              //  .load()
+                .show();
     }
     private DevelopersView mDevelopersview=new DevelopersView() {//新建一个developersview层的数据去完成这些请求
         @Override
         public void success(Developers mdevelopers) {
                 for(int i=0;i<10;i++) {
                     mdevelopers=new Developers();
-                    mdevelopers.getAvatar();
+                /*    mdevelopers.getAvatar();
                     mdevelopers.getName();
                     mdevelopers.getUsername();
+                 */
                     developerdatas.add(mdevelopers);
                 }
             //请求成功，利用请求过来的数据mdevelopers去设置数据 textview1是作者名字 2是项目名字 sim是头像
