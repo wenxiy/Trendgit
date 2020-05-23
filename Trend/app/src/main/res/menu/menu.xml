@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="ListView"
+    <item android:title="Sort by stars"
         android:id="@+id/list_view"
         >
     </item>
-    <item android:title="gridview"
+    <item android:title="Sort by names"
         android:id="@+id/grid_view"
-        >
-    </item>
-    <item android:title="瀑布流效果"
-        android:id="@+id/stagger_view"
         >
     </item>
 </menu>

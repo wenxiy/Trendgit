@@ -1,5 +1,7 @@
 package com.example.trend.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView_2;
     private Button button_2;
     private SimpleDraweeView simpleDraweeView;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 .shimmer(true)
                 .angle(30)
                 .frozen(false)
-                .duration(1200)
+                .duration(1500)
                 .count(10)
-              //  .load()
+                //.load(R.layout.item_list)
                 .show();
     }
     private DevelopersView mDevelopersview=new DevelopersView() {//新建一个developersview层的数据去完成这些请求
@@ -103,19 +107,18 @@ public class MainActivity extends AppCompatActivity {
         public void success(Developers mdevelopers) {
                 for(int i=0;i<10;i++) {
                     mdevelopers=new Developers();
-                /*    mdevelopers.getAvatar();
+                    mdevelopers.getAvatar();
                     mdevelopers.getName();
                     mdevelopers.getUsername();
-                 */
                     developerdatas.add(mdevelopers);
                 }
+            Toast.makeText(getApplicationContext(), "成功！", Toast.LENGTH_SHORT).show();
             //请求成功，利用请求过来的数据mdevelopers去设置数据 textview1是作者名字 2是项目名字 sim是头像
         }
 
 
-
         @Override
-        public void error(String result) {
+        public void OnError(String result) {
             Log.d("TAG","订阅失败");
             Toast.makeText(getApplicationContext(),"订阅失败",Toast.LENGTH_SHORT).show();
         }

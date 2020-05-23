@@ -105,7 +105,7 @@ public class DevelopersPresenter implements Presenter {
                     public void onError(Throwable e) {
                         e.printStackTrace();
                         Log.d("TAG", "请求失败");
-                        //   Toast.makeText(mcontext,"拉取请求失败",Toast.LENGTH_SHORT).show();
+                        dataView.OnError("请求失败");
                     }
 
                     @Override
