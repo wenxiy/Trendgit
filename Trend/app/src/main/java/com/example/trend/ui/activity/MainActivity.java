@@ -46,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView_1=(TextView)this.findViewById(R.id.item_t1);//绑定视图
-        textView_2=(TextView)this.findViewById(R.id.item_t2);//绑定视图
+        mdeveloperspresenter.onCreate();//创建呈现层
+        textView_1=this.findViewById(R.id.item_t1);//绑定视图
+        textView_2=this.findViewById(R.id.item_t2);//绑定视图
         button_2=this.findViewById(R.id.button2);
         simpleDraweeView=this.findViewById(R.id.aver);//绑定视图
-        mrecyclerview=(RecyclerView)this.findViewById(R.id.recyclerview_1);//绑定视图
+        mrecyclerview=this.findViewById(R.id.recyclerview_1);//绑定视图
         button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     {
 
         //创建呈现层的对象，调用网络请求方法，与view联系
-        mdeveloperspresenter.onCreate();//创建呈现层
         mdeveloperspresenter.attachView(mDevelopersview);
         /*
         以下是一个国外的解决办法，类似于提高响应的时间，但HttpUrlConnection报错，没有这个类，怀疑是OKhttp

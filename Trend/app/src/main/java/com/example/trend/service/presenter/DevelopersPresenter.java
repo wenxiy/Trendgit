@@ -79,12 +79,7 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-        Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl(baseurl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RetrofitService retrofitService=retrofit.create(RetrofitService.class);
+        RetrofitService retrofitService=.create(RetrofitService.class);
         retrofitService.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
