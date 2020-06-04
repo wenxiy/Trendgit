@@ -10,10 +10,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface RetrofitService {
-    @GET("/developers")
-    /*
-    以下改动了一下去不解析数据直接处理Json数据
-     */
+    @GET("developers")
     Observable<Developers> getDevelopers();
     @GET("/languages")
     Observable<Languages_Collection>getLanguages();

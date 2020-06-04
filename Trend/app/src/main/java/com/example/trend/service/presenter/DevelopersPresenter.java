@@ -31,7 +31,7 @@ public class DevelopersPresenter implements Presenter {
     private Developers mdevelopers;
     private final static  String baseurl="https://ghapi.huchen.dev";
     private CompositeDisposable compositeDisposable;
-    private RetrofitHelper retrofitHelper=new RetrofitHelper();
+    private RetrofitHelper retrofitHelper=RetrofitHelper.getInstance();
 
     public DevelopersPresenter(Context context) {
         this.mcontext = context;
@@ -63,13 +63,7 @@ public class DevelopersPresenter implements Presenter {
 
     @Override
     public void attachView(View view) {
-
-    }
-
-
-    public void attachView(DevelopersView view) {
-        //这里写和view的联系
-        dataView = view;
+        dataView=(DevelopersView) view;
     }
 
     @Override
@@ -79,7 +73,7 @@ public class DevelopersPresenter implements Presenter {
     }
 
     public void getDevelopers() {
-        RetrofitService retrofitService=.create(RetrofitService.class);
+        RetrofitService retrofitService=retrofitHelper.getserver();
         retrofitService.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
