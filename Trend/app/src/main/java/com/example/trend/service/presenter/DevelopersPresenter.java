@@ -29,52 +29,12 @@ public class DevelopersPresenter implements Presenter {
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
-    private final static  String baseurl="https://ghapi.huchen.dev";
-    private CompositeDisposable compositeDisposable;
-    private RetrofitHelper retrofitHelper=RetrofitHelper.getInstance();
-
+    private RetrofitHelper retrofitHelper=new RetrofitHelper();
     public DevelopersPresenter(Context context) {
         this.mcontext = context;
     }
-
-    @Override
-    public void onCreate() {
-        compositeDisposable = new CompositeDisposable();
-    }
-
-    @Override
-    public void onStart() {
-
-    }
-
-    @Override
-    public void onStop() {
-        if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-        }
-
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void attachView(View view) {
-        dataView=(DevelopersView) view;
-    }
-
-    @Override
-    public void attachIncomingIntent(Intent intent) {
-        //添加网络请求，线程切换
-        getDevelopers();
-    }
-
     public void getDevelopers() {
-        RetrofitService retrofitService=retrofitHelper.getserver();
-        retrofitService.getDevelopers()
+        retrofitHelper.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Developers>() {
@@ -106,5 +66,15 @@ public class DevelopersPresenter implements Presenter {
                         Toast.makeText(mcontext, "请求完成", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void attachview(DevelopersView View) {
+        dataView=View;
+    }
+
+    @Override
+    public void detachview() {
+
     }
 }

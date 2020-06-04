@@ -43,17 +43,11 @@ public class MainActivity extends AppCompatActivity {
     private SimpleDraweeView simpleDraweeView;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mdeveloperspresenter.onCreate();//创建呈现层
+        mdeveloperspresenter.attachview(mDevelopersview);
         textView_1=this.findViewById(R.id.item_t1);//绑定视图
         textView_2=this.findViewById(R.id.item_t2);//绑定视图
         button_2=this.findViewById(R.id.button2);
@@ -82,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     {
 
         //创建呈现层的对象，调用网络请求方法，与view联系
-        mdeveloperspresenter.attachView(mDevelopersview);
+        mdeveloperspresenter.attachview(mDevelopersview);
         /*
         以下是一个国外的解决办法，类似于提高响应的时间，但HttpUrlConnection报错，没有这个类，怀疑是OKhttp
         的方法和类

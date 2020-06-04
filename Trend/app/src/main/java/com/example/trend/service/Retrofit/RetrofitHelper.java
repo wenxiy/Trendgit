@@ -21,7 +21,7 @@ public class RetrofitHelper {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
     private final static  RetrofitService retrofitservice=retrofit.create(RetrofitService.class);
-    private static Observable<Developers> getDevelopers()
+    public static Observable<Developers> getDevelopers()
     {
         return retrofitservice.getDevelopers();
     }
