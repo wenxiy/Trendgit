@@ -29,15 +29,14 @@ public class DevelopersPresenter implements Presenter {
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
-    private CompositeDisposable compositeDisposable;
-    private RetrofitHelper retrofitHelper=new RetrofitHelper();
+    private final CompositeDisposable compositeDisposable=new CompositeDisposable();;
+    private final RetrofitHelper retrofitHelper=new RetrofitHelper();
     public DevelopersPresenter(Context context) {
-        compositeDisposable=new CompositeDisposable();
         this.mcontext = context;
     }
     public void getDevelopers() {
-        compositeDisposable.add(retrofitHelper
-                .getDevelopers()
+        compositeDisposable.add(
+        retrofitHelper.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Developers>() {
@@ -69,39 +68,6 @@ public class DevelopersPresenter implements Presenter {
                                }
                            }
     ));
-    }
-        retrofitHelper.getDevelopers()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Developers>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.d("TAG", "订阅");
-                    }
-
-
-                    @Override
-                    public void onNext(Developers developers) {
-                        mdevelopers = developers;
-                        Log.d("TAG", "请求数据");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                        Log.d("TAG", "请求失败");
-                        dataView.OnError("请求失败");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        if (mdevelopers != null) {
-                            dataView.success(mdevelopers);
-                            //这里去写和view的联系，把数据传过去
-                        }
-                        Toast.makeText(mcontext, "请求完成", Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
 
     @Override
