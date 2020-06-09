@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,16 +16,15 @@ import android.widget.Toast;
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
 import com.example.trend.R;
-import com.example.trend.service.entity.Developers;
-import com.example.trend.service.entity.Languages_Collection;
-import com.example.trend.service.entity.Repositories;
-import com.example.trend.service.entity.Spoken_Languages_Collection;
+import com.example.trend.service.model.Developers;
+import com.example.trend.service.model.Languages_Collection;
+import com.example.trend.service.model.Repositories;
+import com.example.trend.service.model.Spoken_Languages_Collection;
 import com.example.trend.service.presenter.DevelopersPresenter;
 import com.example.trend.ui.adapter.ListViewAdapter;
 import com.example.trend.ui.view.DevelopersView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void initdeveloperdatas()//拉取Developer的请求，将数据传入view里
     {
-
         //创建呈现层的对象，调用网络请求方法，与view联系
         mdeveloperspresenter.attachview(mDevelopersview);
         /*

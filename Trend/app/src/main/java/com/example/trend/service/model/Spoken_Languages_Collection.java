@@ -1,4 +1,4 @@
-package com.example.trend.service.entity;
+package com.example.trend.service.model;
 
 public class Spoken_Languages_Collection {
 

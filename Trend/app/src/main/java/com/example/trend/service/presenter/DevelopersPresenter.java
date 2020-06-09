@@ -1,31 +1,21 @@
 package com.example.trend.service.presenter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.trend.service.Retrofit.RetrofitHelper;
-import com.example.trend.service.Retrofit.RetrofitService;
-import com.example.trend.service.entity.Developers;
+import com.example.trend.service.TrendContract;
+import com.example.trend.service.model.Developers;
 import com.example.trend.ui.view.DevelopersView;
-import com.example.trend.ui.view.View;
-import com.google.gson.JsonObject;
 
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class DevelopersPresenter implements Presenter {
+public class DevelopersPresenter implements TrendContract.Presenter {
     private Context mcontext;
     private DevelopersView dataView;
     private Developers mdevelopers;
@@ -35,7 +25,7 @@ public class DevelopersPresenter implements Presenter {
         this.mcontext = context;
     }
     public void getDevelopers() {
-        compositeDisposable.add(
+        compositeDisposable.
         retrofitHelper.getDevelopers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

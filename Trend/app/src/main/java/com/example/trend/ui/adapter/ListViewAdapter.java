@@ -2,20 +2,16 @@ package com.example.trend.ui.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trend.R;
-import com.example.trend.service.entity.Developers;
+import com.example.trend.service.model.Developers;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
-import java.util.Objects;
-
-import static android.view.View.inflate;
 
 public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.InnerHolder> {
     private final List<Developers> mdeveloper;
