@@ -26,8 +26,10 @@ public class RetrofitHelper {
         }
         return service;
     }
-   public static Observable<Developers> getDevelopers()
+ /*  public static Observable<Developers> getDevelopers()
     {
         return service.getDevelopers();
     }
+
+  */
 }
