@@ -11,6 +11,9 @@ import com.example.trend.service.TrendContract;
 import com.example.trend.service.model.Developers;
 import com.example.trend.ui.view.DevelopersView;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
@@ -33,10 +36,23 @@ public class DevelopersPresenter implements TrendContract.Presenter {
         this.dataView=view;
     }
     public void getDevelopers() {
-        Disposable d=retrofitmanager
+        compositeDisposable.add(retrofitmanager
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Observer<Developers>() {
+        .subscribe(
+                //onNext
+                mdevelopers->{
+                    Log.d("TAG","data");
+                    mdevelopers.getAvatar();
+                    mdevelopers.getName();
+                    mdevelopers.getUsername();
+                }
+                //error
+                ,throwable -> {
+                    throwable.printStackTrace();
+                }
+
+                /*new Observer<Developers>() {
             @Override
             public void onSubscribe(Disposable d) {
                 Log.d("TAG", "订阅");
@@ -64,9 +80,9 @@ public class DevelopersPresenter implements TrendContract.Presenter {
                 Toast.makeText(mcontext, "请求完成", Toast.LENGTH_SHORT).show();
             }
 
-        }
-        );
-        container.add(d);
+        }*/
+        ));
+     //   container.add(d);
                            }
     @Override
     public void loaddatas() {

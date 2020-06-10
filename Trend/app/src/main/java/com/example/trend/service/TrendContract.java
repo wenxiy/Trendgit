@@ -6,9 +6,9 @@ import com.example.trend.service.model.Developers;
 
 public interface TrendContract {
     interface View extends BaseView<Presenter>{
-        void loadview(Developers mdevelopers);
+        void showdeveloperlist(Developers mdevelopers);
         void showviewerror();
-        void showtrend();
+        void setdata();
     }
     interface Presenter extends BasePresenter{
         void loaddatas();

@@ -30,11 +30,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mrecyclerview;//recyclerview的建立
-    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter(this);//呈现层的建立
+    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter();//呈现层的建立
     private List<Languages_Collection> languages_collectiondatas;
     private List<Developers> developerdatas;//存放数据的List
-    private List<Repositories> repositorydata;
-    private List<Spoken_Languages_Collection> spoken_languages_collectiondatas;
+   // private List<Repositories> repositorydata;
+  //  private List<Spoken_Languages_Collection> spoken_languages_collectiondatas;
     private TextView textView_1;
     private TextView textView_2;
     private Button button_2;
