@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
 import com.example.trend.R;
+import com.example.trend.service.TrendContract;
 import com.example.trend.service.model.Developers;
 import com.example.trend.service.model.Languages_Collection;
 import com.example.trend.service.model.Repositories;
@@ -28,9 +29,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立
-    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter();//呈现层的建立
+    private DevelopersPresenter mdeveloperspresenter;//呈现层的建立
     private List<Languages_Collection> languages_collectiondatas;
     private List<Developers> developerdatas;//存放数据的List
    // private List<Repositories> repositorydata;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mdeveloperspresenter.attachview(mDevelopersview);
+     //   mdeveloperspresenter.attachview(mDevelopersview);
         textView_1=this.findViewById(R.id.item_t1);//绑定视图
         textView_2=this.findViewById(R.id.item_t2);//绑定视图
         button_2=this.findViewById(R.id.button2);
@@ -122,4 +123,28 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void showdeveloperlist(Developers mdevelopers) {
+
+    }
+
+    @Override
+    public void showviewerror() {
+
+    }
+
+    @Override
+    public void setdata() {
+
+    }
+
+    @Override
+    public void setPresenter(TrendContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

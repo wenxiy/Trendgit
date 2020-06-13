@@ -28,12 +28,11 @@ public class DevelopersPresenter implements TrendContract.Presenter {
     private Context mcontext;
     private TrendContract.View dataView;
     private Developers mdevelopers;
-    private ListCompositeDisposable container;
     private final CompositeDisposable compositeDisposable=new CompositeDisposable();;
     private Observable<Developers> retrofitmanager=Retrofitmanager.getDevelopers();
-    public DevelopersPresenter(TrendContract.View view) {
-        container=new ListCompositeDisposable();
-        this.dataView=view;
+    public DevelopersPresenter(TrendContract.View mtrendview) {
+        mtrendview.setPresenter(this);
+        this.dataView=mtrendview;
     }
     public void getDevelopers() {
         compositeDisposable.add(retrofitmanager
@@ -41,11 +40,9 @@ public class DevelopersPresenter implements TrendContract.Presenter {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
                 //onNext
-                mdevelopers->{
+                developers->{
                     Log.d("TAG","data");
-                    mdevelopers.getAvatar();
-                    mdevelopers.getName();
-                    mdevelopers.getUsername();
+                    mdevelopers=developers;
                 }
                 //error
                 ,throwable -> {
@@ -82,7 +79,6 @@ public class DevelopersPresenter implements TrendContract.Presenter {
 
         }*/
         ));
-     //   container.add(d);
                            }
     @Override
     public void loaddatas() {
@@ -91,7 +87,7 @@ public class DevelopersPresenter implements TrendContract.Presenter {
 
     @Override
     public void subscribe() {
-
+        getDevelopers();
     }
 
     @Override
