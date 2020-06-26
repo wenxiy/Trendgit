@@ -31,7 +31,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立
-    private DevelopersPresenter mdeveloperspresenter;//呈现层的建立
+    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter(developerview);//呈现层的建立
     private List<Languages_Collection> languages_collectiondatas;
     private List<Developers> developerdatas;//存放数据的List
    // private List<Repositories> repositorydata;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-     //   mdeveloperspresenter.attachview(mDevelopersview);
+        mdeveloperspresenter.subscribe();
         textView_1=this.findViewById(R.id.item_t1);//绑定视图
         textView_2=this.findViewById(R.id.item_t2);//绑定视图
         button_2=this.findViewById(R.id.button2);
@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
             @Override
             public void onClick(View v) {
                 mdeveloperspresenter.getDevelopers();//调用网络请求方法
+                initdeveloperdatas();//传送数据并呈现
             }
         });
-            initdeveloperdatas();//传送数据并呈现
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -74,13 +74,7 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
     public void initdeveloperdatas()//拉取Developer的请求，将数据传入view里
     {
         //创建呈现层的对象，调用网络请求方法，与view联系
-        mdeveloperspresenter.attachview(mDevelopersview);
-        /*
-        以下是一个国外的解决办法，类似于提高响应的时间，但HttpUrlConnection报错，没有这个类，怀疑是OKhttp
-        的方法和类
-         */
-      //  HttpUrlConnection conn = (HttpURLConnection) url.openConnection();
-      //  conn.setConnectTimeout(7000);
+       // mdeveloperspresenter.attachview(mDevelopersview);
         developerdatas=new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         //设置布局管理器
         LinearLayoutManager linearLayoutManager =new LinearLayoutManager(this);
@@ -101,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
                 //.load(R.layout.item_list)
                 .show();
     }
-    private DevelopersView mDevelopersview=new DevelopersView() {//新建一个developersview层的数据去完成这些请求
+
+    /*   private DevelopersView mDevelopersview=new DevelopersView() {//新建一个developersview层的数据去完成这些请求
         @Override
         public void success(Developers mdevelopers) {
                 for(int i=0;i<10;i++) {
@@ -121,20 +116,22 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
             Log.d("TAG","订阅失败");
             Toast.makeText(getApplicationContext(),"订阅失败",Toast.LENGTH_SHORT).show();
         }
-    };
+    }; */
 
     @Override
     public void showdeveloperlist(Developers mdevelopers) {
-
+        for(int i=0;i<10;i++) {
+            mdevelopers=new Developers();
+            mdevelopers.getAvatar();
+            mdevelopers.getName();
+            mdevelopers.getUsername();
+            developerdatas.add(mdevelopers);
+        }
+        Toast.makeText(getApplicationContext(), "成功！", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showviewerror() {
-
-    }
-
-    @Override
-    public void setdata() {
 
     }
 

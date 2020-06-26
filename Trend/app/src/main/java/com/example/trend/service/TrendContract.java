@@ -8,7 +8,6 @@ public interface TrendContract {
     interface View extends BaseView<Presenter>{
         void showdeveloperlist(Developers mdevelopers);
         void showviewerror();
-        void setdata();
     }
     interface Presenter extends BasePresenter{
         void loaddatas();

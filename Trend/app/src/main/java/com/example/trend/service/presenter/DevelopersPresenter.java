@@ -30,9 +30,8 @@ public class DevelopersPresenter implements TrendContract.Presenter {
     private Developers mdevelopers;
     private final CompositeDisposable compositeDisposable=new CompositeDisposable();;
     private Observable<Developers> retrofitmanager=Retrofitmanager.getDevelopers();
-    public DevelopersPresenter(TrendContract.View mtrendview) {
-        mtrendview.setPresenter(this);
-        this.dataView=mtrendview;
+    public DevelopersPresenter() {
+        dataView.setPresenter(this);
     }
     public void getDevelopers() {
         compositeDisposable.add(retrofitmanager
@@ -43,6 +42,7 @@ public class DevelopersPresenter implements TrendContract.Presenter {
                 developers->{
                     Log.d("TAG","data");
                     mdevelopers=developers;
+                    dataView.showdeveloperlist(mdevelopers);
                 }
                 //error
                 ,throwable -> {
