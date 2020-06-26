@@ -25,13 +25,12 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
 public class DevelopersPresenter implements TrendContract.Presenter {
-    private Context mcontext;
     private TrendContract.View dataView;
     private Developers mdevelopers;
     private final CompositeDisposable compositeDisposable=new CompositeDisposable();;
     private Observable<Developers> retrofitmanager=Retrofitmanager.getDevelopers();
-    public DevelopersPresenter() {
-        dataView.setPresenter(this);
+    public DevelopersPresenter(TrendContract.View DeveloperView) {
+        dataView=DeveloperView;
     }
     public void getDevelopers() {
         compositeDisposable.add(retrofitmanager

@@ -31,8 +31,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立
-    private DevelopersPresenter mdeveloperspresenter=new DevelopersPresenter(developerview);//呈现层的建立
-    private List<Languages_Collection> languages_collectiondatas;
+    private DevelopersPresenter mdeveloperspresenter;//呈现层的建立
+//    private List<Languages_Collection> languages_collectiondatas;
     private List<Developers> developerdatas;//存放数据的List
    // private List<Repositories> repositorydata;
   //  private List<Spoken_Languages_Collection> spoken_languages_collectiondatas;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mdeveloperspresenter.subscribe();
+        mdeveloperspresenter=new DevelopersPresenter(this);
         textView_1=this.findViewById(R.id.item_t1);//绑定视图
         textView_2=this.findViewById(R.id.item_t2);//绑定视图
         button_2=this.findViewById(R.id.button2);
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
         button_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mdeveloperspresenter.getDevelopers();//调用网络请求方法
+              //  mdeveloperspresenter.getDevelopers();//调用网络请求方法
+                mdeveloperspresenter.subscribe();
                 initdeveloperdatas();//传送数据并呈现
             }
         });
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements TrendContract.Vie
             mdevelopers.getAvatar();
             mdevelopers.getName();
             mdevelopers.getUsername();
+            Log.d("TAG",mdevelopers.getName());
             developerdatas.add(mdevelopers);
         }
         Toast.makeText(getApplicationContext(), "成功！", Toast.LENGTH_SHORT).show();
