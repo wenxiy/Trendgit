@@ -128,18 +128,5 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.InnerH
             fork.setText(String.valueOf(developer.getForks()));
         }
     }
-//    public class ViewHolder extends RecyclerView.ViewHolder{
-//        private TextView description;
-//        private TextView languages;
-//        private TextView star;
-//        private TextView fork;
-//        public ViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            description = itemView.findViewById(R.id.description);
-//            languages = itemView.findViewById(R.id.languages);
-//            star = itemView.findViewById(R.id.star);
-//            fork = itemView.findViewById(R.id.fork);
-//        }
-//    }
 }
 

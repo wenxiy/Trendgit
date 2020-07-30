@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SuccessFragment extends Fragment implements TrendContract.View {
@@ -55,6 +59,22 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.sort_stars:
+                Collections.sort(developerdatas);
+                adpter.notifyDataSetChanged();
+                Log.d("TAG","star");
+                break;
+            case R.id.sort_names:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void showdeveloperlist(List<Repository> mdevelopers) {
         developerdatas = new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         developerdatas.addAll(mdevelopers);
@@ -65,6 +85,7 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
             @Override
             public void OnItemClick(int position) {
                 //点击事件
+
             }
         });
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -83,14 +104,14 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
 
     @Override
     public void showviewerror(int error_code) {
-            //利用bundle进行通信
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt("code", error_code);
-            intent.putExtras(bundle);
-            startActivity(intent);
-            Toast.makeText(getContext(), "拉取数据失败", Toast.LENGTH_SHORT).show();
-            Log.d("TAG", "Bug");
+        //利用bundle进行通信
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("code", error_code);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        Toast.makeText(getContext(), "拉取数据失败", Toast.LENGTH_SHORT).show();
+        Log.d("TAG", "Bug");
     }
 
     public void initdeveloperdatas() {

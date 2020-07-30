@@ -7,6 +7,7 @@ import com.example.trend.service.TrendContract;
 import com.example.trend.service.model.Repository;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;

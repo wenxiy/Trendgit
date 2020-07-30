@@ -2,7 +2,7 @@ package com.example.trend.service.model;
 
 import java.util.List;
 
-public class Repository {
+public class Repository implements Comparable<Repository>{
     /**
      * author : xingshaocheng
      * name : architect-awesome
@@ -115,6 +115,11 @@ public class Repository {
 
     public void setBuiltBy(List<Repositories.BuiltByBean> builtBy) {
         this.builtBy = builtBy;
+    }
+
+    @Override
+    public int compareTo(Repository o) {
+        return o.getStars()-this.getStars();
     }
 
     public static class BuiltByBean {
