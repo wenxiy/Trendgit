@@ -1,5 +1,6 @@
 package com.example.trend.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
 import com.example.trend.R;
 import com.example.trend.service.TrendContract;
-import com.example.trend.service.model.Developers;
+import com.example.trend.service.model.Repository;
 import com.example.trend.service.presenter.DevelopersPresenter;
 import com.example.trend.ui.activity.MainActivity;
 import com.example.trend.ui.adapter.ListViewAdapter;
@@ -33,12 +34,12 @@ import java.util.List;
 public class SuccessFragment extends Fragment implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立
     private DevelopersPresenter mdeveloperspresenter;//呈现层的建立
-    private List<Developers> developerdatas;//存放数据的List
+    private List<Repository> developerdatas;//存放数据的List
     private LinearLayoutManager linearLayoutManager;
     private RefreshLayout refreshLayout;
     private ListViewAdapter adpter;
     private SkeletonScreen skeletonScreen;
-    private boolean errorcode = false;
+    private int errorcode = 0;
 
     @Nullable
     @Override
@@ -49,12 +50,12 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
         mrecyclerview = v.findViewById(R.id.recyclerview_1);
         Fresco.initialize(getContext());
         mdeveloperspresenter.subscribe();
-     //   initdeveloperdatas();
+        //   initdeveloperdatas();
         return v;
     }
 
     @Override
-    public void showdeveloperlist(List<Developers> mdevelopers) {
+    public void showdeveloperlist(List<Repository> mdevelopers) {
         developerdatas = new ArrayList<>();//创建数据对象，最后把请求的数据放进去
         developerdatas.addAll(mdevelopers);
         Log.d("TAG", developerdatas.get(0).getName());//test for developerdatas
@@ -64,7 +65,6 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
             @Override
             public void OnItemClick(int position) {
                 //点击事件
-                Toast.makeText(getContext(), "点击第" + position + "条目", Toast.LENGTH_SHORT).show();
             }
         });
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -82,11 +82,15 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
     }
 
     @Override
-    public void showviewerror(boolean error_code) {
-        if (!errorcode) {
-            Toast.makeText(getContext(), "拉去数据失败", Toast.LENGTH_SHORT).show();
+    public void showviewerror(int error_code) {
+            //利用bundle进行通信
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("code", error_code);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            Toast.makeText(getContext(), "拉取数据失败", Toast.LENGTH_SHORT).show();
             Log.d("TAG", "Bug");
-        }
     }
 
     public void initdeveloperdatas() {

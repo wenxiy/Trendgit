@@ -118,6 +118,7 @@ public class Repositories {
         this.builtBy = builtBy;
     }
 
+
     public static class BuiltByBean {
         /**
          * href : https://github.com/viatsko
@@ -128,7 +129,6 @@ public class Repositories {
         private String href;
         private String avatar;
         private String username;
-
         public String getHref() {
             return href;
         }

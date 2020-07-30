@@ -4,23 +4,26 @@ import android.util.Log;
 
 import com.example.trend.service.Retrofit.Retrofitmanager;
 import com.example.trend.service.TrendContract;
-import com.example.trend.service.model.Developers;
+import com.example.trend.service.model.Repository;
 
+import java.io.IOException;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.HttpException;
 
 public class DevelopersPresenter implements TrendContract.Presenter {
     private TrendContract.View dataView;
-    private List<Developers> mdevelopers;
+    private List<Repository> mdevelopers;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private Observable<List<Developers>> retrofitmanager = Retrofitmanager.getDevelopers();
-    private boolean error_code = false;
+    private Observable<List<Repository>> retrofitmanager = Retrofitmanager.getDevelopers();
+    private int error_code = 0;
 
-    public DevelopersPresenter(TrendContract.View DeveloperView,boolean errorcode) {
+    public DevelopersPresenter(TrendContract.View DeveloperView,int errorcode) {
         dataView = DeveloperView;
         error_code = errorcode;
     }
@@ -35,18 +38,23 @@ public class DevelopersPresenter implements TrendContract.Presenter {
                             Log.d("TAG", "data");
                             mdevelopers = developers;
                             dataView.showdeveloperlist(mdevelopers);
+
                         }
                         //error
                         , throwable -> {
                             throwable.printStackTrace();
-                            error();
+                            if(throwable instanceof HttpException){
+                                HttpException exception = (HttpException) throwable;
+                                String message = exception.response().message();
+                                error_code = exception.response().code();
+                            }
                         }
                 ));
     }
 
     @Override
     public void error() {
-        error_code = true;
+        error_code = 0;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.trend.service.model;
 
 import java.util.List;
 
-public class Developers {
+public class Repository {
     /**
      * author : xingshaocheng
      * name : architect-awesome

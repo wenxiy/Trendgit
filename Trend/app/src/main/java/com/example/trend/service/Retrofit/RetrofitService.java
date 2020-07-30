@@ -1,9 +1,6 @@
 package com.example.trend.service.Retrofit;
 
-import com.example.trend.service.model.Developers;
-import com.example.trend.service.model.Languages_Collection;
-import com.example.trend.service.model.Repositories;
-import com.example.trend.service.model.Spoken_Languages_Collection;
+import com.example.trend.service.model.Repository;
 
 import java.util.List;
 
@@ -12,11 +9,5 @@ import retrofit2.http.GET;
 
 public interface RetrofitService {
     @GET("/repositories")
-    Observable<List<Developers>> getDevelopers();
-    @GET("/languages")
-    Observable<Languages_Collection>getLanguages();
-    @GET("/spoken_languages")
-    Observable<Spoken_Languages_Collection>getSpoken();
-    @GET("/repositories")
-    Observable<Repositories>getRepositories();
+    Observable<List<Repository>> getDevelopers();
 }

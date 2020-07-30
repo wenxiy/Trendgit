@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import com.example.trend.R;
 import com.example.trend.ui.fragment.FailFragment;
@@ -12,20 +13,22 @@ import com.example.trend.ui.fragment.SuccessFragment;
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private boolean errorcode = false;
+    private int errorcode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        //取出由SuccessFragment传递的bundle
+//        Bundle bundle =this.getIntent().getExtras();
+//        errorcode = bundle.getInt("code");
+//        Log.d("TAG","code is"+errorcode);
         judge();
     }
 
     private void judge() {
-        if (errorcode ==false){
-            getsuccessfragment();
-        }
-        if (errorcode==true){
+        getsuccessfragment();
+        if (errorcode == 404){
             getFailFragment();
         }
     }
