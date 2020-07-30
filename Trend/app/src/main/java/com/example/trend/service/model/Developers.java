@@ -1,29 +1,40 @@
 package com.example.trend.service.model;
 
-public class Developers {
+import java.util.List;
 
+public class Developers {
     /**
-     * username : google
-     * name : Google
-     * type : organization
-     * url : https://github.com/google
-     * avatar : https://avatars0.githubusercontent.com/u/1342004
-     * repo : {"name":"material-design-icons","description":"Material Design icons by Google","url":"https://github.com/google/material-design-icons"}
+     * author : xingshaocheng
+     * name : architect-awesome
+     * avatar : https://github.com/xingshaocheng.png
+     * url : https://github.com/xingshaocheng/architect-awesome
+     * description : 后端架构师技术图谱
+     * language : Go
+     * languageColor : #3572A5
+     * stars : 7333
+     * forks : 1546
+     * currentPeriodStars : 1528
+     * builtBy : [{"href":"https://github.com/viatsko","avatar":"https://avatars0.githubusercontent.com/u/376065","username":"viatsko"}]
      */
 
-    private String username;
+    private String author;
     private String name;
-    private String type;
-    private String url;
     private String avatar;
-    private RepoBean repo;
+    private String url;
+    private String description;
+    private String language;
+    private String languageColor;
+    private int stars;
+    private int forks;
+    private int currentPeriodStars;
+    private List<Repositories.BuiltByBean> builtBy;
 
-    public String getUsername() {
-        return username;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getName() {
@@ -34,12 +45,12 @@ public class Developers {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getUrl() {
@@ -50,55 +61,95 @@ public class Developers {
         this.url = url;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public RepoBean getRepo() {
-        return repo;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setRepo(RepoBean repo) {
-        this.repo = repo;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public static class RepoBean {
+    public String getLanguageColor() {
+        return languageColor;
+    }
+
+    public void setLanguageColor(String languageColor) {
+        this.languageColor = languageColor;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public int getForks() {
+        return forks;
+    }
+
+    public void setForks(int forks) {
+        this.forks = forks;
+    }
+
+    public int getCurrentPeriodStars() {
+        return currentPeriodStars;
+    }
+
+    public void setCurrentPeriodStars(int currentPeriodStars) {
+        this.currentPeriodStars = currentPeriodStars;
+    }
+
+    public List<Repositories.BuiltByBean> getBuiltBy() {
+        return builtBy;
+    }
+
+    public void setBuiltBy(List<Repositories.BuiltByBean> builtBy) {
+        this.builtBy = builtBy;
+    }
+
+    public static class BuiltByBean {
         /**
-         * name : material-design-icons
-         * description : Material Design icons by Google
-         * url : https://github.com/google/material-design-icons
+         * href : https://github.com/viatsko
+         * avatar : https://avatars0.githubusercontent.com/u/376065
+         * username : viatsko
          */
 
-        private String name;
-        private String description;
-        private String url;
+        private String href;
+        private String avatar;
+        private String username;
 
-        public String getName() {
-            return name;
+        public String getHref() {
+            return href;
         }
 
-        public void setName(String name) {
-            this.name = name;
+        public void setHref(String href) {
+            this.href = href;
         }
 
-        public String getDescription() {
-            return description;
+        public String getAvatar() {
+            return avatar;
         }
 
-        public void setDescription(String description) {
-            this.description = description;
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
         }
 
-        public String getUrl() {
-            return url;
+        public String getUsername() {
+            return username;
         }
 
-        public void setUrl(String url) {
-            this.url = url;
+        public void setUsername(String username) {
+            this.username = username;
         }
     }
 }

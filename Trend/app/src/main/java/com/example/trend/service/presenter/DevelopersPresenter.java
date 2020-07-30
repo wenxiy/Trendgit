@@ -17,11 +17,12 @@ public class DevelopersPresenter implements TrendContract.Presenter {
     private TrendContract.View dataView;
     private List<Developers> mdevelopers;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    ;
     private Observable<List<Developers>> retrofitmanager = Retrofitmanager.getDevelopers();
+    private boolean error_code = false;
 
-    public DevelopersPresenter(TrendContract.View DeveloperView) {
+    public DevelopersPresenter(TrendContract.View DeveloperView,boolean errorcode) {
         dataView = DeveloperView;
+        error_code = errorcode;
     }
 
     public void getDevelopers() {
@@ -38,13 +39,14 @@ public class DevelopersPresenter implements TrendContract.Presenter {
                         //error
                         , throwable -> {
                             throwable.printStackTrace();
+                            error();
                         }
                 ));
     }
 
     @Override
-    public void loaddatas() {
-
+    public void error() {
+        error_code = true;
     }
 
     @Override

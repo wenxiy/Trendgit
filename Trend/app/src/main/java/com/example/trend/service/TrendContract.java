@@ -9,9 +9,9 @@ import java.util.List;
 public interface TrendContract {
     interface View extends BaseView<Presenter>{
         void showdeveloperlist(List<Developers> mdevelopers);
-        void showviewerror();
+        void showviewerror(boolean error_code);
     }
     interface Presenter extends BasePresenter{
-        void loaddatas();
+        void error();
     }
 }

@@ -12,7 +12,7 @@ public class RetrofitHelper {
             synchronized (RetrofitHelper.class) {
                 if (service == null) {
                     service = new Retrofit.Builder()
-                            .baseUrl("https://ghapi.huchen.dev/")
+                            .baseUrl("https://ghapi.huchen.dev")
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .addConverterFactory(GsonConverterFactory.create())
                             .build()

@@ -11,7 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 public interface RetrofitService {
-    @GET("/developers")
+    @GET("/repositories")
     Observable<List<Developers>> getDevelopers();
     @GET("/languages")
     Observable<Languages_Collection>getLanguages();
