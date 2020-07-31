@@ -35,6 +35,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.example.trend.service.model.Repository.namesComparator;
+import static com.example.trend.service.model.Repository.starComparator;
+
 public class SuccessFragment extends Fragment implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立
     private DevelopersPresenter mdeveloperspresenter;//呈现层的建立
@@ -54,8 +57,15 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
         mrecyclerview = v.findViewById(R.id.recyclerview_1);
         Fresco.initialize(getContext());
         mdeveloperspresenter.subscribe();
-        //   initdeveloperdatas();
+        setHasOptionsMenu(true);
+           initdeveloperdatas();
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -63,12 +73,13 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.sort_stars:
-                Collections.sort(developerdatas);
+                Collections.sort(developerdatas,starComparator);
                 adpter.notifyDataSetChanged();
                 Log.d("TAG","star");
                 break;
             case R.id.sort_names:
-
+                Collections.sort(developerdatas,namesComparator);
+                adpter.notifyDataSetChanged();
                 break;
         }
         return super.onOptionsItemSelected(item);

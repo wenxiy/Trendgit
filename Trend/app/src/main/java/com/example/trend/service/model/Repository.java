@@ -1,8 +1,11 @@
 package com.example.trend.service.model;
 
+import com.example.trend.R;
+
+import java.util.Comparator;
 import java.util.List;
 
-public class Repository implements Comparable<Repository>{
+public class Repository {
     /**
      * author : xingshaocheng
      * name : architect-awesome
@@ -117,10 +120,24 @@ public class Repository implements Comparable<Repository>{
         this.builtBy = builtBy;
     }
 
-    @Override
-    public int compareTo(Repository o) {
-        return o.getStars()-this.getStars();
-    }
+    public static Comparator<Repository> starComparator = new Comparator<Repository>() {
+        @Override
+        public int compare(Repository o1, Repository o2) {
+            int star1 = o1.getStars();
+            int star2 = o2.getStars();
+            return star2-star1;
+        }
+    };
+    public static Comparator<Repository> namesComparator = new Comparator<Repository>() {
+        @Override
+        public int compare(Repository o1, Repository o2) {
+            String name1 = o1.getName();
+            String name2 = o2.getName();
+
+            return name2.length() - name1.length();
+
+        }
+    };
 
     public static class BuiltByBean {
         /**

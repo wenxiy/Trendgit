@@ -1,14 +1,19 @@
 package com.example.trend.ui.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+
 import com.example.trend.R;
 import com.example.trend.ui.fragment.FailFragment;
 import com.example.trend.ui.fragment.SuccessFragment;
+
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -31,12 +36,6 @@ public class MainActivity extends AppCompatActivity {
         if (errorcode == 404){
             getFailFragment();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);//创建数据菜单
-        return super.onCreateOptionsMenu(menu);//呈现菜单
     }
 
     public void getFailFragment() {
