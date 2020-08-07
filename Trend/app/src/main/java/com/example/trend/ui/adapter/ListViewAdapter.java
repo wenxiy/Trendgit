@@ -62,7 +62,7 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.InnerH
         } else {
             expandPosition = -1;
         }
-        notifyItemChanged(position);
+        notifyItemChanged(position);//刷新单个
     }
     public void setOnItemClickListener(OnItemClickListener listener) {
         //设置监听回调接口

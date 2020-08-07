@@ -86,9 +86,9 @@ public class SuccessFragment extends Fragment implements TrendContract.View {
     }
 
     @Override
-    public void showdeveloperlist(List<Repository> mdevelopers) {
+    public void showDeveloperList(List<Repository> mDevelopers) {
         developerdatas = new ArrayList<>();//创建数据对象，最后把请求的数据放进去
-        developerdatas.addAll(mdevelopers);
+        developerdatas.addAll(mDevelopers);
         Log.d("TAG", developerdatas.get(0).getName());//test for developerdatas
         Log.d("TAG", "successful");
         adpter = new ListViewAdapter(developerdatas);

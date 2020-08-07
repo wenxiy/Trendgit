@@ -6,15 +6,12 @@ import com.example.trend.service.Retrofit.Retrofitmanager;
 import com.example.trend.service.TrendContract;
 import com.example.trend.service.model.Repository;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class DevelopersPresenter implements TrendContract.Presenter {
@@ -38,7 +35,7 @@ public class DevelopersPresenter implements TrendContract.Presenter {
                         developers -> {
                             Log.d("TAG", "data");
                             mdevelopers = developers;
-                            dataView.showdeveloperlist(mdevelopers);
+                            dataView.showDeveloperList(mdevelopers);
 
                         }
                         //error
