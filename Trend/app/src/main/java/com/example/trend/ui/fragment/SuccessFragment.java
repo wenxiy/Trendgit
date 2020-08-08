@@ -21,7 +21,7 @@ import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
 import com.example.trend.R;
 import com.example.trend.service.TrendContract;
-import com.example.trend.service.model.Repository;
+import com.example.trend.ui.model.Repository;
 import com.example.trend.service.presenter.DevelopersPresenter;
 import com.example.trend.ui.activity.MainActivity;
 import com.example.trend.ui.adapter.ListViewAdapter;
@@ -35,8 +35,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.example.trend.service.model.Repository.namesComparator;
-import static com.example.trend.service.model.Repository.starComparator;
+import static com.example.trend.ui.model.Repository.namesComparator;
+import static com.example.trend.ui.model.Repository.starComparator;
 
 public class SuccessFragment extends Fragment implements TrendContract.View {
     private RecyclerView mrecyclerview;//recyclerview的建立

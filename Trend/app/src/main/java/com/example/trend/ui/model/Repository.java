@@ -1,9 +1,9 @@
-package com.example.trend.service.model;
+package com.example.trend.ui.model;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Repositories {
-
+public class Repository {
     /**
      * author : xingshaocheng
      * name : architect-awesome
@@ -28,7 +28,7 @@ public class Repositories {
     private int stars;
     private int forks;
     private int currentPeriodStars;
-    private List<BuiltByBean> builtBy;
+    private List<Repositories.BuiltByBean> builtBy;
 
     public String getAuthor() {
         return author;
@@ -110,14 +110,32 @@ public class Repositories {
         this.currentPeriodStars = currentPeriodStars;
     }
 
-    public List<BuiltByBean> getBuiltBy() {
+    public List<Repositories.BuiltByBean> getBuiltBy() {
         return builtBy;
     }
 
-    public void setBuiltBy(List<BuiltByBean> builtBy) {
+    public void setBuiltBy(List<Repositories.BuiltByBean> builtBy) {
         this.builtBy = builtBy;
     }
 
+    public static Comparator<Repository> starComparator = new Comparator<Repository>() {
+        @Override
+        public int compare(Repository o1, Repository o2) {
+            int star1 = o1.getStars();
+            int star2 = o2.getStars();
+            return star2-star1;
+        }
+    };
+    public static Comparator<Repository> namesComparator = new Comparator<Repository>() {
+        @Override
+        public int compare(Repository o1, Repository o2) {
+            String name1 = o1.getName();
+            String name2 = o2.getName();
+
+            return name2.length() - name1.length();
+
+        }
+    };
 
     public static class BuiltByBean {
         /**
@@ -129,6 +147,7 @@ public class Repositories {
         private String href;
         private String avatar;
         private String username;
+
         public String getHref() {
             return href;
         }

@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.trend.service.Retrofit.Retrofitmanager;
 import com.example.trend.service.TrendContract;
-import com.example.trend.service.model.Repository;
+import com.example.trend.ui.model.Repository;
 
 import java.util.List;
 

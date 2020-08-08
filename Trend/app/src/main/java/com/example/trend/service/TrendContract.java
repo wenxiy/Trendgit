@@ -2,7 +2,7 @@ package com.example.trend.service;
 
 import com.example.trend.BasePresenter;
 import com.example.trend.BaseView;
-import com.example.trend.service.model.Repository;
+import com.example.trend.ui.model.Repository;
 
 import java.util.List;
 

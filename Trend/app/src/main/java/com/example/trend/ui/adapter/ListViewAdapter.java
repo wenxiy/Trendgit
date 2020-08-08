@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trend.R;
-import com.example.trend.service.model.Repositories;
-import com.example.trend.service.model.Repository;
+import com.example.trend.ui.model.Repository;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
