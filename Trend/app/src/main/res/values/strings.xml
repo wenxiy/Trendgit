@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Trend</string>
-    <string name="RETRY">RETRY</string>
-    <string name="wrong">Something went wrong...</string>
-    <string name="alien">An alien is probably blocking your signal.</string>
-</resources>
